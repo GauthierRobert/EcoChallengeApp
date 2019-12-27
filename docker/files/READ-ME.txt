@@ -1,0 +1,18 @@
+-- Build container (optional)
+docker build --tag=alpine-jdk:base --rm=true .
+
+docker build --file=Dockerfile-config-server --tag=config-server:latest --rm=true .
+docker volume create --name=config-repo
+
+docker build --file=Dockerfile-registry-service --tag=registry-service:latest --rm=true .
+
+
+docker run --name=config-server --publish=8888:8888 --volume=config-repo:/var/lib/config-repo config-server:latest
+
+-- Docker compose
+docker-compose up --force-recreate --build
+docker-compose up --build --force-recreate --renew-anon-volumes
+docker-compose down
+
+--CLear all
+docker system prune -a 

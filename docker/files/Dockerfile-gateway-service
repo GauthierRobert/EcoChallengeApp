@@ -1,0 +1,7 @@
+FROM alpine-jdk:base
+MAINTAINER GauthierRobert
+COPY /jar/gateway-service-0.0.1-SNAPSHOT.jar /opt/lib/
+COPY entrypoint/Gateway-service-entrypoint.sh /opt/bin/Gateway-service-entrypoint.sh
+RUN dos2unix /opt/bin/Gateway-service-entrypoint.sh
+RUN chmod 755 /opt/bin/Gateway-service-entrypoint.sh
+EXPOSE 16016

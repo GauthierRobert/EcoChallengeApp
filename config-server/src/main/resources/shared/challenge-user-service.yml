@@ -1,0 +1,16 @@
+security:
+  oauth2:
+    client:
+      clientId: challenge-user-service
+      clientSecret: 1234
+      accessTokenUri: http://auth-service:16015/uaa/oauth/token
+      grant-type: client_credentials
+      scope: server
+server:
+  servlet:
+    context-path: /challenge-user
+  port: 16018
+
+feign:
+  hystrix:
+    enabled: true

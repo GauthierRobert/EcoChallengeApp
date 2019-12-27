@@ -1,0 +1,18 @@
+#This configuration file will hold common configs to be shared among all files
+eureka:
+  instance:
+    prefer-ip-address: false
+  client:
+    serviceUrl:
+      defaultZone: http://registry-service:8761/eureka/ #where our registry server is located
+
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://auth-service:16015/uaa/users/current #which uri will be used to find the user
+      token-info-uri: http://auth-service:16015/uaa/oauth/check_token #add this information
+spring:
+  kafka:
+    bootstrap-servers: PLAINTEXT://kafka:9092
+    topic:
+      userCreated: USER_CREATED_TOPIC

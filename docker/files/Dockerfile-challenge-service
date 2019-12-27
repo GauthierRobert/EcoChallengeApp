@@ -1,0 +1,8 @@
+FROM alpine-jdk:base
+MAINTAINER GauthierRobert
+RUN apk --no-cache add netcat-openbsd
+COPY jar/challenge-service-0.0.1-SNAPSHOT.jar /opt/lib/
+COPY entrypoint/Challenge-service-entrypoint.sh /opt/bin/Challenge-service-entrypoint.sh
+RUN dos2unix /opt/bin/Challenge-service-entrypoint.sh
+RUN chmod 755 /opt/bin/Challenge-service-entrypoint.sh
+EXPOSE 16015

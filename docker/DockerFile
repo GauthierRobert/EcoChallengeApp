@@ -1,0 +1,4 @@
+FROM alpine:edge
+MAINTAINER GauthierRobert
+RUN apk add --no-cache openjdk8
+RUN apk add --no-cache bash

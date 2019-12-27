@@ -1,0 +1,178 @@
+version: '3.7'
+services:
+    config-server:
+        container_name: config-server
+        build:
+            context: .
+            dockerfile: Dockerfile-config-server
+        image: config-server:latest
+        expose:
+            - 8888
+        ports:
+            - 8888:8888
+        networks:
+            - emp-network
+    registry-service:
+        container_name: registry-service
+        build:
+            context: .
+            dockerfile: Dockerfile-registry-service
+        image: registry-service:latest
+        environment:
+            SPRING_APPLICATION_JSON: '{"spring": {"cloud": {"config": {"uri": "http://config-server:8888"}}}}'
+        entrypoint: /opt/bin/Registry-service-entrypoint.sh
+        expose:
+            - 8761
+        ports:
+            - 8761:8761
+        networks:
+            - emp-network
+        links:
+            - config-server:config-server
+        depends_on:
+            - config-server
+            
+    gateway-service:
+        container_name: gateway-service
+        build:
+            context: .
+            dockerfile: Dockerfile-gateway-service
+        image: gateway-service:latest
+        environment:
+            SPRING_APPLICATION_JSON: '{"spring": {"cloud": {"config": {"uri": "http://config-server:8888"}}}}'
+        entrypoint: /opt/bin/Gateway-service-entrypoint.sh
+        expose:
+            - 16016
+        ports:
+            - 16016:16016
+        networks:
+            - emp-network
+        links:
+            - config-server:config-server
+            - registry-service:registry-service
+        depends_on:
+            - config-server
+            - registry-service
+        logging:
+            driver: json-file
+        
+    mongo-oauth:
+      container_name: mongo-oauth
+      image: mongo:4.0.4
+      restart: always
+      environment:
+        MONGO_INITDB_ROOT_USERNAME: root
+        MONGO_INITDB_ROOT_PASSWORD: example
+        MONGO_INITDB_DATABASE: oauth-db
+        MONGODB_USER: oauth-user
+        MONGODB_DATABASE: oauth-db
+        MONGODB_PASS: password
+      logging:
+        options:
+            max-size: "10m"
+            max-file: "10"
+      expose:
+        - 27017
+      ports:
+        - 27017:27017
+      volumes:
+        - ./mongo-init/init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh
+      networks:
+        - emp-network
+    mongo-express-oauth:
+      image: mongo-express:0.49
+      container_name: mongo-express-oauth
+      restart: always
+      ports:
+        - 10081:16015
+      environment:
+        ME_CONFIG_MONGODB_ADMINUSERNAME: root
+        ME_CONFIG_MONGODB_ADMINPASSWORD: example
+        ME_CONFIG_MONGODB_SERVER: mongo-oauth
+        ME_CONFIG_MONGODB_PORT: 27017
+      links:
+        - mongo-oauth
+      networks:
+        - emp-network
+    zookeeper:
+        container_name: zookeeper
+        image: wurstmeister/zookeeper
+        ports:
+            - "2181:2181"
+    kafka:
+        container_name: kafka
+        image: wurstmeister/kafka
+        links:
+          - zookeeper:zookeeper
+        ports:
+          - "9092:9092"
+          - "29092:29092"
+        environment:
+          ALLOW_PLAINTEXT_LISTENER: "yes"
+          KAFKA_LISTENERS: PLAINTEXT://:9092,PLAINTEXT_HOST://:29092
+          KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+          KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+          KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+          KAFKA_MESSAGE_MAX_BYTES: 2000000
+          KAFKA_CREATE_TOPICS: "Topic1:1:1"
+        volumes:
+          - /var/run/docker.sock:/var/run/docker.sock
+        depends_on:
+          - zookeeper
+    auth-service:
+        container_name: auth-service
+        build:
+            context: .
+            dockerfile: Dockerfile-auth-service
+        image: auth-service:latest
+        environment:
+            SPRING_APPLICATION_JSON: '{"spring": {"cloud": {"config": {"uri": "http://config-server:8888"}}}}'
+        entrypoint: /opt/bin/Auth-service-entrypoint.sh
+        expose:
+            - 16015
+        ports:
+            - 16015:16015
+        networks:
+            - emp-network
+        links:
+            - config-server:config-server
+            - registry-service:registry-service
+            - mongo-oauth:mongo-oauth
+            - mongo-express-oauth:mongo-express-oauth
+        depends_on:
+            - config-server
+            - registry-service
+            - mongo-oauth
+            - mongo-express-oauth
+        logging:
+            driver: json-file
+            
+    user-service:
+        container_name: user-service
+        build:
+            context: .
+            dockerfile: Dockerfile-user-service
+        image: user-service:latest
+        environment:
+            SPRING_APPLICATION_JSON: '{"spring": {"cloud": {"config": {"uri": "http://config-server:8888"}}}}'
+        entrypoint: /opt/bin/User-service-entrypoint.sh
+        expose:
+            - 16014
+        ports:
+            - 16014:16014
+        networks:
+            - emp-network
+        links:
+            - config-server:config-server
+            - registry-service:registry-service
+        depends_on:
+            - config-server
+            - registry-service
+        logging:
+            driver: json-file        
+networks:
+    emp-network:
+        driver: bridge
+volumes:
+    config-repo:
+        external: true

@@ -1,0 +1,15 @@
+zuul:
+  ignoredServices: '*'
+  host:
+    connect-timeout-millis: 20000
+    socket-timeout-millis: 20000
+
+  routes:
+    challenge-service:
+      path: /challenge/** #path that will be intercepted
+      serviceId: challenge-service #which url the request will e mapped to
+      stripPrefix: false #if zuul should replace the "/challenge/" segment
+      sensitiveHeaders:
+
+server:
+  port: 16016

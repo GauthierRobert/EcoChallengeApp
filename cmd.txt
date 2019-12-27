@@ -1,0 +1,10 @@
+https://itnext.io/microservices-with-spring-boot-and-spring-cloud-441e3dabc67d
+https://itnext.io/microservices-with-spring-boot-and-spring-cloud-20f689b17fc7
+https://dzone.com/articles/microservices-in-spring-eureka
+https://medium.com/@prnmkmth/a-step-by-step-guide-to-a-spring-boot-microservices-workshop-for-wwcode-part-1-a5ff89a84016
+
+java -jar target/config-server-0.0.1-SNAPSHOT.jar
+java -jar target/registry-service-0.0.1-SNAPSHOT.jar
+java -jar target/gateway-service-0.0.1-SNAPSHOT.jar
+java -jar target/auth-service-0.0.1-SNAPSHOT.jar
+java -jar target/challenge-service-0.0.1-SNAPSHOT.jar

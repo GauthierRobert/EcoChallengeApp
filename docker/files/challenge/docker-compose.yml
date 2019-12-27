@@ -1,0 +1,110 @@
+version: '3.7'
+services:
+    config-server:
+        container_name: config-server
+        build:
+            context: .
+            dockerfile: Dockerfile-config-server
+        image: config-server:latest
+        expose:
+            - 8888
+        ports:
+            - 8888:8888
+        networks:
+            - emp-network
+    registry-service:
+        container_name: registry-service
+        build:
+            context: .
+            dockerfile: Dockerfile-registry-service
+        image: registry-service:latest
+        environment:
+            SPRING_APPLICATION_JSON: '{"spring": {"cloud": {"config": {"uri": "http://config-server:8888"}}}}'
+        entrypoint: /opt/bin/Registry-service-entrypoint.sh
+        expose:
+            - 8761
+        ports:
+            - 8761:8761
+        networks:
+            - emp-network
+        links:
+            - config-server:config-server
+        depends_on:
+            - config-server
+            
+    gateway-service:
+        container_name: gateway-service
+        build:
+            context: .
+            dockerfile: Dockerfile-gateway-service
+        image: gateway-service:latest
+        environment:
+            SPRING_APPLICATION_JSON: '{"spring": {"cloud": {"config": {"uri": "http://config-server:8888"}}}}'
+        entrypoint: /opt/bin/Gateway-service-entrypoint.sh
+        expose:
+            - 16016
+        ports:
+            - 16016:16016
+        networks:
+            - emp-network
+        links:
+            - config-server:config-server
+            - registry-service:registry-service
+        depends_on:
+            - config-server
+            - registry-service
+        logging:
+            driver: json-file
+    challenge-service:
+        container_name: challenge-service
+        build:
+            context: .
+            dockerfile: Dockerfile-challenge-service
+        image: challenge-service:latest
+        environment:
+            SPRING_APPLICATION_JSON: '{"spring": {"cloud": {"config": {"uri": "http://config-server:8888"}}}}'
+        entrypoint: /opt/bin/Challenge-service-entrypoint.sh
+        expose:
+            - 16017
+        ports:
+            - 16017:16017
+        networks:
+            - emp-network
+        links:
+            - config-server:config-server
+            - registry-service:registry-service
+        depends_on:
+            - config-server
+            - registry-service
+        logging:
+            driver: json-file
+    challenge-user-service:
+        container_name: challenge-user-service
+        build:
+            context: .
+            dockerfile: Dockerfile-challenge-user-service
+        image: challenge-user-service:latest
+        environment:
+            SPRING_APPLICATION_JSON: '{"spring": {"cloud": {"config": {"uri": "http://config-server:8888"}}}}'
+        entrypoint: /opt/bin/Challenge-user-service-entrypoint.sh
+        expose:
+            - 16018
+        ports:
+            - 16018:16018
+        networks:
+            - emp-network
+        links:
+            - config-server:config-server
+            - registry-service:registry-service
+        depends_on:
+            - config-server
+            - registry-service
+        logging:
+            driver: json-file
+           
+networks:
+    emp-network:
+        driver: bridge
+volumes:
+    config-repo:
+        external: true

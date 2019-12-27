@@ -1,0 +1,12 @@
+FROM mongo:latest
+MAINTAINER GauthierRobert
+ENV MONGO_INITDB_ROOT_USERNAME: roo	 
+ENV MONGO_INITDB_ROOT_PASSWORD: example
+ENV MONGO_INITDB_DATABASE: oauth-db
+ENV MONGODB_USER: oauth-user
+ENV MONGODB_DATABASE: oauth-db
+ENV MONGODB_PASS: password
+COPY /mongo-init/init-mongo.sh /docker-entrypoint-initdb.d/init-mongo.sh
+ENTRYPOINT ["/docker-entrypoint-initdb.d/init-mongo.sh"]
+CMD ["mongod"]
+EXPOSE 27021

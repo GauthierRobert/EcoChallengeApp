@@ -1,0 +1,9 @@
+FROM alpine-jdk:base
+MAINTAINER GauthierRobert
+COPY /jar/registry-service-0.0.1-SNAPSHOT.jar /opt/lib/
+COPY entrypoint/Registry-service-entrypoint.sh /opt/bin/Registry-service-entrypoint.sh
+RUN chmod 755 /opt/bin/Registry-service-entrypoint.sh
+RUN dos2unix /opt/bin/Registry-service-entrypoint.sh
+ENTRYPOINT ["/opt/bin/Registry-service-entrypoint.sh"]
+# CMD ["-jar", "/opt/lib/registry-service-0.0.1-SNAPSHOT.jar"]
+EXPOSE 8761

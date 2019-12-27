@@ -1,0 +1,15 @@
+spring:
+  data:
+    mongodb:
+      host: mongo-oauth
+      port: 27017
+      username: oauth-user
+      password: password
+      database: oauth-db
+  kafka:
+    group-id: USER
+server:
+  servlet:
+    context-path: /uaa
+  port: 16015
+

@@ -1,0 +1,8 @@
+FROM alpine-jdk:base
+MAINTAINER GauthierRobert
+RUN apk --no-cache add netcat-openbsd
+COPY jar/auth-service-0.0.1-SNAPSHOT.jar /opt/lib/
+COPY entrypoint/Auth-service-entrypoint.sh /opt/bin/Auth-service-entrypoint.sh
+RUN dos2unix /opt/bin/Auth-service-entrypoint.sh
+RUN chmod 755 /opt/bin/Auth-service-entrypoint.sh
+EXPOSE 16015
