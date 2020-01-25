@@ -1,8 +1,6 @@
 package com.eco.userservice;
 
 import com.eco.userservice.dto.UserDto;
-import com.eco.userservice.web.Receiver;
-import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -53,11 +51,4 @@ public class KafkaConsumerConfig {
 
         return factory;
     }
-
-    @Bean
-    public Receiver receiver() {
-        return new Receiver();
-    }
-    
-
 }

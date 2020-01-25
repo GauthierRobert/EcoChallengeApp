@@ -10,9 +10,9 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class Producer {
+public class ProducerUserCreated {
 
-    private static final Logger logger = LoggerFactory.getLogger(Producer.class);
+    private static final Logger logger = LoggerFactory.getLogger(ProducerUserCreated.class);
 
     @Value("${spring.kafka.topic.userCreated}")
     private String USER_CREATED_TOPIC;

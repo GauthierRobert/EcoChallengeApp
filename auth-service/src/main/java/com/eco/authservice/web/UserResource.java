@@ -6,6 +6,8 @@ import com.eco.authservice.domain.User;
 import com.eco.authservice.service.UserService;
 import java.security.Principal;
 import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,9 +22,11 @@ import static com.eco.authservice.dto.Mapper.toUser;
 @RequestMapping("/user")
 public class UserResource {
 
+    @Autowired
     private final UserService userService;
 
-    private Producer producer;
+    @Autowired
+    private ProducerUserCreated producer;
 
     public UserResource(UserService userService) {
         this.userService = userService;

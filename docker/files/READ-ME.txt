@@ -16,3 +16,6 @@ docker-compose down
 
 --CLear all
 docker system prune -a 
+
+-- Clear none 
+docker rmi $(docker images -f "dangling=true" -q)

@@ -10,7 +10,6 @@ server:
   servlet:
     context-path: /user
   port: 16014
-
 feign:
   hystrix:
     enabled: true
