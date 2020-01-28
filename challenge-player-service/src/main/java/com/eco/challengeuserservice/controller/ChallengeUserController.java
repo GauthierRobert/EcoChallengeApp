@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/challenge-user")
+@RequestMapping("/challenge-player")
 public class ChallengeUserController {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());

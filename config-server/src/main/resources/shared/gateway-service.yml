@@ -20,9 +20,9 @@ zuul:
       serviceId: challenge-service #which url the request will e mapped to
       stripPrefix: false #if zuul should replace the "/challenge/" segment
       sensitiveHeaders:
-    challenge-user-service:
-      path: /challenge-user/** #path that will be intercepted
-      serviceId: challenge-user-service #which url the request will e mapped to
+    challenge-player-service:
+      path: /challenge-player/** #path that will be intercepted
+      serviceId: challenge-player-service #which url the request will e mapped to
       stripPrefix: false #if zuul should replace the "/challenge/" segment
       sensitiveHeaders:
 

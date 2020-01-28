@@ -34,15 +34,20 @@ public class InitialValuesChangeLog {
         mongoTemplate.save(createAuthUser("challenge-service", "$2a$10$fWNTd3H.u7G/aNROVQSifebOkZ2xzU5nUPOCI2Ld42M8E25/ljJqK"));
     }
 
-    @ChangeSet(order = "004", id = "insertChallengeUserServiceClientDetails", author = "Gauthier Robert")
-    public void insertChallengeUserServiceClientDetails(MongoTemplate mongoTemplate) {
-        mongoTemplate.save(createAuthUser("challenge-user-service", "$2a$10$fWNTd3H.u7G/aNROVQSifebOkZ2xzU5nUPOCI2Ld42M8E25/ljJqK"));
+    @ChangeSet(order = "004", id = "insertChallengePlayerServiceClientDetails", author = "Gauthier Robert")
+    public void insertChallengePlayerServiceClientDetails(MongoTemplate mongoTemplate) {
+        mongoTemplate.save(createAuthUser("challenge-player-service", "$2a$10$fWNTd3H.u7G/aNROVQSifebOkZ2xzU5nUPOCI2Ld42M8E25/ljJqK"));
     }
 
 
     @ChangeSet(order = "005", id = "insertUserServiceClientDetails", author = "Gauthier Robert")
     public void insertUserServiceClientDetails(MongoTemplate mongoTemplate) {
         mongoTemplate.save(createAuthUser("user-service", "$2a$10$fWNTd3H.u7G/aNROVQSifebOkZ2xzU5nUPOCI2Ld42M8E25/ljJqK"));
+    }
+
+    @ChangeSet(order = "006", id = "insertPlayerServiceClientDetails", author = "Gauthier Robert")
+    public void insertPlayerServiceClientDetails(MongoTemplate mongoTemplate) {
+        mongoTemplate.save(createAuthUser("player-service", "$2a$10$fWNTd3H.u7G/aNROVQSifebOkZ2xzU5nUPOCI2Ld42M8E25/ljJqK"));
     }
 
     private AuthClientDetails createAuthUser(String username, String password){

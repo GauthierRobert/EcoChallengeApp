@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/auth-service/auth-service.iml" filepath="$PROJECT_DIR$/auth-service/auth-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/challenge-player-service/challenge-player-service.iml" filepath="$PROJECT_DIR$/challenge-player-service/challenge-player-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/challenge-service/challenge-service.iml" filepath="$PROJECT_DIR$/challenge-service/challenge-service.iml" />
-      <module fileurl="file://$PROJECT_DIR$/challenge-user-service/challenge-user-service.iml" filepath="$PROJECT_DIR$/challenge-user-service/challenge-user-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/config-server/config-server.iml" filepath="$PROJECT_DIR$/config-server/config-server.iml" />
       <module fileurl="file://$PROJECT_DIR$/gateway-service/gateway-service.iml" filepath="$PROJECT_DIR$/gateway-service/gateway-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/player-service/player-service.iml" filepath="$PROJECT_DIR$/player-service/player-service.iml" />
