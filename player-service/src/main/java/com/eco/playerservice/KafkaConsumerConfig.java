@@ -1,6 +1,6 @@
 package com.eco.playerservice;
 
-import com.eco.userservice.dto.UserDto;
+import com.eco.playerservice.dto.UserDto;
 import java.util.HashMap;
 import java.util.Map;
 import org.apache.kafka.common.serialization.StringDeserializer;

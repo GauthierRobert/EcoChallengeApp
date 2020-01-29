@@ -21,4 +21,7 @@ public class UserDto implements Serializable {
         return username;
     }
 
+    public String getId() {
+        return id;
+    }
 }
