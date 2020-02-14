@@ -7,18 +7,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="auth-service" />
+        <module name="challenge-player-service" />
         <module name="challenge-service" />
         <module name="config-server" />
         <module name="gateway-service" />
         <module name="player-service" />
         <module name="registry-service" />
         <module name="user-service" />
-      </profile>
-      <profile name="Annotation profile for challenge-user-service" enabled="true">
-        <sourceOutputDir name="../challenge-user-service/target/generated-sources/annotations" />
-        <sourceTestOutputDir name="../challenge-user-service/target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <module name="challenge-player-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

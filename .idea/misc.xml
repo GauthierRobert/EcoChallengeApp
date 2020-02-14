@@ -16,6 +16,8 @@
         <option value="$PROJECT_DIR$/registry-service/pom.xml" />
         <option value="$PROJECT_DIR$/user-service/pom.xml" />
         <option value="$PROJECT_DIR$/player-service/pom.xml" />
+        <option value="$PROJECT_DIR$/auth-service/pom.xml" />
+        <option value="$PROJECT_DIR$/challenge-player-service/pom.xml" />
       </list>
     </option>
   </component>
