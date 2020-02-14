@@ -8,5 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ChallengePlayerRepository extends MongoRepository<ChallengePlayer, String> {
 
-    List<ChallengePlayer> findByPlayerId(String username);
+    List<ChallengePlayer> findByPlayerId(String playerId);
+
 }

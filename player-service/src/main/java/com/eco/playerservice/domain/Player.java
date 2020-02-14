@@ -38,4 +38,8 @@ public class Player {
     public static Player newPlayer(String userId){
         return new Player(null, userId, 0, 0, 0, 1);
     }
+
+    public String getId() {
+        return id;
+    }
 }

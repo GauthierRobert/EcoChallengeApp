@@ -8,7 +8,7 @@ import javax.inject.Named;
 class ChallengeConverter {
 
     ChallengeDto convert(Challenge challenge) {
-        return new ChallengeDto(challenge.getPoint(), challenge.getLevel(), challenge.getCategory().toString());
+        return new ChallengeDto(challenge.getId(), challenge.getPoint(), challenge.getLevel(), challenge.getCategory().toString());
     }
 
 }

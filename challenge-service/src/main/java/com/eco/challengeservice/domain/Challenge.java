@@ -18,7 +18,7 @@ public class Challenge implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID", nullable = false)
-    private Long id;
+    private String id;
     @Column(name = "POINT", nullable = false)
     private Integer point;
     @Column(name = "LEVEL_ID", nullable = false)

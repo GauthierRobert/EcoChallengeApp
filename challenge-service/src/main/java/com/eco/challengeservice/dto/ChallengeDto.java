@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 
 public class ChallengeDto implements Serializable {
-
+    private String id;
     private int point;
     private int level;
     private String category;
@@ -12,21 +12,10 @@ public class ChallengeDto implements Serializable {
     public ChallengeDto() {
     }
 
-    public ChallengeDto(int point, int level, String category) {
+    public ChallengeDto(String id, int point, int level, String category) {
+        this.id = id;
         this.point = point;
         this.level = level;
         this.category = category;
-    }
-
-    public int getPoint() {
-        return point;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public String getCategory() {
-        return category;
     }
 }
