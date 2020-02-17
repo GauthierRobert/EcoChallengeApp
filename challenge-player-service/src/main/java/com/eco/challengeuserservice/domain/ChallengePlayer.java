@@ -4,6 +4,8 @@ import java.util.Date;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import static com.eco.challengeuserservice.domain.ChallengePlayerBuilder.aChallengePlayer;
+
 @Document
 public class ChallengePlayer {
 
@@ -22,28 +24,24 @@ public class ChallengePlayer {
 
     private boolean completed;
 
-    private Date completedDate;
+    private Date completionDate;
 
     private int validation;
 
-    private ChallengePlayer(String id, String playerId, String challengeId, int level,  int point, String category,  boolean completed, Date completedDate, int validation) {
-        this(playerId, challengeId, level, point, category, completed, completedDate, validation);
+    ChallengePlayer(String id, String playerId, String challengeId, int level, int point, String category, boolean completed, Date completionDate, int validation) {
+        this(playerId, challengeId, level, point, category, completed, completionDate, validation);
         this.id = id;
     }
 
-    private ChallengePlayer(String playerId, String challengeId, int level, int point, String category, boolean completed, Date completedDate, int validation) {
+    private ChallengePlayer(String playerId, String challengeId, int level, int point, String category, boolean completed, Date completionDate, int validation) {
         this.playerId = playerId;
         this.challengeId = challengeId;
         this.level = level;
         this.point = point;
         this.category = category;
         this.completed = completed;
-        this.completedDate = completedDate;
+        this.completionDate = completionDate;
         this.validation = validation;
-    }
-
-    public static ChallengePlayer newChallengePlayer(String playerId, String challengeId, int level, int point,  String category){
-        return new ChallengePlayer(playerId, challengeId, level, point, category, false, null, 0);
     }
 
     public String getId() {
@@ -68,5 +66,21 @@ public class ChallengePlayer {
 
     public int getValidation() {
         return validation;
+    }
+
+    public ChallengePlayer validate(){
+        return aChallengePlayer().from(this).validate().build();
+    }
+
+    String getPlayerId() {
+        return playerId;
+    }
+
+    boolean isCompleted() {
+        return completed;
+    }
+
+    Date getCompletionDate() {
+        return completionDate;
     }
 }

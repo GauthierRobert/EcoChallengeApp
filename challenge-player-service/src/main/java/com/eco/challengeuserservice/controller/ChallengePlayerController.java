@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -33,5 +34,10 @@ public class ChallengePlayerController {
         return service.findByPlayerId(playerId).stream().map(converter::convert).collect(toList());
     }
 
+    @PUT
+    @Path("/{challengePlayerId}")
+    public ChallengePlayerDto validate(@PathParam("challengePlayerId") String challengePlayerId) {
+        return converter.convert(service.validate(challengePlayerId));
+    }
 
 }
