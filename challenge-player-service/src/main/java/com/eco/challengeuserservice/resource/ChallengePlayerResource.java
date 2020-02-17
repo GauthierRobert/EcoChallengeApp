@@ -3,6 +3,7 @@ package com.eco.challengeuserservice.resource;
 import com.eco.challengeuserservice.converter.ChallengePlayerConverter;
 import com.eco.challengeuserservice.domain.ChallengePlayer;
 import com.eco.challengeuserservice.dto.ChallengePlayerDto;
+import com.eco.challengeuserservice.proxy.ChallengeServiceProxy;
 import com.eco.challengeuserservice.service.ChallengePlayerService;
 import java.util.Collection;
 import javax.inject.Inject;
@@ -25,14 +26,15 @@ public class ChallengePlayerResource {
 
     @Inject
     private ChallengePlayerService service;
-
     @Inject
     private ChallengePlayerConverter converter;
+    @Inject
+    private ChallengeServiceProxy challengeServiceProxy;
 
     @GET
     @Path("/{playerId}/findAll")
     public Collection<ChallengePlayerDto> findAll(@PathParam("playerId") String playerId) {
-        return service.findByPlayerId(playerId).stream().map(converter::convert).collect(toList());
+        return converter.convert(service.findByPlayerId(playerId), challengeServiceProxy.findAll());
     }
 
     @GET

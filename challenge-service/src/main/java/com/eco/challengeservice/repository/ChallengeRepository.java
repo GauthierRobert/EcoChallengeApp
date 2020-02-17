@@ -1,4 +1,4 @@
-package com.eco.challengeservice.service;
+package com.eco.challengeservice.repository;
 
 import com.eco.challengeservice.domain.Challenge;
 import java.util.Collection;
@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 @Named("challengeRepository")
-interface ChallengeRepository extends JpaRepository<Challenge, Long> {
+public interface ChallengeRepository extends JpaRepository<Challenge, Long> {
 
     @Query("SELECT c FROM Challenge c WHERE c.level = :level")
     Collection<Challenge> findAllByLevel(@Param("level") int level);

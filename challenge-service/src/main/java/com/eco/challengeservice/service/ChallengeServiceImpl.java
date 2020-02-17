@@ -1,6 +1,7 @@
 package com.eco.challengeservice.service;
 
 import com.eco.challengeservice.domain.Challenge;
+import com.eco.challengeservice.repository.ChallengeRepository;
 import java.util.Collection;
 import javax.inject.Inject;
 import javax.inject.Named;

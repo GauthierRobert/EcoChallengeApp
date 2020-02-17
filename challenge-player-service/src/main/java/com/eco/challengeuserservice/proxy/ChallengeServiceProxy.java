@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 @FeignClient(name = "challengeService", url = "http://localhost:16017")
 public interface ChallengeServiceProxy {
 
-    @GetMapping("/challenge/all")
+    @GetMapping("/challenge/findAll")
     Collection<ChallengeDto> findAll();
+
+    @GetMapping("/challenge/findAll/{level}")
+    Collection<ChallengeDto> findAllByLevel(int level);
 
 }
