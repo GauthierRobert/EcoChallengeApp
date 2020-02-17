@@ -10,4 +10,5 @@ public interface ChallengePlayerRepository extends MongoRepository<ChallengePlay
 
     List<ChallengePlayer> findByPlayerId(String playerId);
 
+    List<ChallengePlayer> findByPlayerIdAndLevel(String playerId, int level);
 }

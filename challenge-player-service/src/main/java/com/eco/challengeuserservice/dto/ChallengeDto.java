@@ -8,7 +8,6 @@ public class ChallengeDto implements Serializable {
     private String id;
     private int point;
     private int level;
-    private String category;
 
     public ChallengeDto() {
     }
@@ -17,7 +16,6 @@ public class ChallengeDto implements Serializable {
         this.id = id;
         this.point = point;
         this.level = level;
-        this.category = category;
     }
 
     public int getPoint() {

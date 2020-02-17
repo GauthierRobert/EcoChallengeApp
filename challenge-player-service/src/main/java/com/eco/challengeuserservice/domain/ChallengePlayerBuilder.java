@@ -1,8 +1,11 @@
 package com.eco.challengeuserservice.domain;
 
 import java.util.Date;
+import java.util.List;
 
+import static com.mongodb.internal.connection.tlschannel.util.Util.assertTrue;
 import static java.util.Calendar.getInstance;
+import static java.util.Collections.emptyList;
 
 public class ChallengePlayerBuilder {
 
@@ -14,7 +17,7 @@ public class ChallengePlayerBuilder {
     private String category = null;
     private boolean completed = false;
     private Date completionDate = null;
-    private int validation = 0;
+    private List<String> playerValidationIds = emptyList();
 
     private ChallengePlayerBuilder() {
     }
@@ -33,7 +36,7 @@ public class ChallengePlayerBuilder {
                 .withCategory(challengePlayer.getCategory())
                 .withCompletionDate(challengePlayer.getCompletionDate())
                 .isCompleted(challengePlayer.isCompleted())
-                .withValidation(challengePlayer.getValidation());
+                .withValidation(challengePlayer.getPlayerValidationIds());
     }
 
 
@@ -81,18 +84,23 @@ public class ChallengePlayerBuilder {
         return withCompletionDate(getInstance().getTime()).isCompleted(true);
     }
 
-    public ChallengePlayerBuilder withValidation(int validation) {
-        this.validation = validation;
+    public ChallengePlayerBuilder withValidation(List<String> playerValidationIds) {
+        this.playerValidationIds = playerValidationIds;
         return this;
     }
 
-    public ChallengePlayerBuilder validate() {
-        this.validation++;
+    public ChallengePlayerBuilder validate(String playerId) {
+        assertTrue(!playerId.equals(this.playerId));
+        if (!playerValidationIds.contains(playerId)) {
+            this.playerValidationIds.add(playerId);
+        } else {
+            throw new RuntimeException(playerId + " cannot validate twice this challenge");
+        }
         return this;
     }
 
     public ChallengePlayer build() {
-        return new ChallengePlayer(id, playerId, challengeId, level, point, category, completed, completionDate, validation);
+        return new ChallengePlayer(id, playerId, challengeId, level, point, category, completed, completionDate, playerValidationIds);
     }
 
 }

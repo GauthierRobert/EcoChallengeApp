@@ -12,8 +12,8 @@ public class ChallengePlayerService {
     @Inject
     private ChallengePlayerRepository challengePlayerRepository;
 
-    public void save(ChallengePlayer challengePlayer) {
-        challengePlayerRepository.save(challengePlayer);
+    public ChallengePlayer save(ChallengePlayer challengePlayer) {
+        return challengePlayerRepository.save(challengePlayer);
     }
 
     public void save(List<ChallengePlayer> challengePlayers) {
@@ -24,8 +24,12 @@ public class ChallengePlayerService {
         return challengePlayerRepository.findByPlayerId(playerId);
     }
 
-    public ChallengePlayer validate(String challengePlayerId) {
+    public List<ChallengePlayer> findByPlayerIdAndLevel(String playerId, int level){
+        return challengePlayerRepository.findByPlayerIdAndLevel(playerId, level);
+    }
+
+    public ChallengePlayer validate(String playerId, String challengePlayerId) {
         ChallengePlayer challengePlayer = challengePlayerRepository.findById(challengePlayerId).orElseThrow(() -> new RuntimeException("Cannot found challenge with Id : " + challengePlayerId));
-        return challengePlayerRepository.save(challengePlayer.validate());
+        return save(challengePlayer.validate(playerId));
     }
 }

@@ -1,10 +1,12 @@
 package com.eco.challengeservice.service;
 
-import com.eco.challengeservice.dto.ChallengeDto;
+import com.eco.challengeservice.domain.Challenge;
 import java.util.Collection;
 
 public interface ChallengeService {
 
-    Collection<ChallengeDto> findAll();
+    Collection<Challenge> findAll();
+
+    Collection<Challenge> findAllByLevel(int level);
 
 }

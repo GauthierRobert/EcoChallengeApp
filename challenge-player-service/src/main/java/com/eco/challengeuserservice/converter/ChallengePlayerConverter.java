@@ -12,10 +12,9 @@ public class ChallengePlayerConverter implements Converter<ChallengePlayer, Chal
     @Override
     public ChallengePlayerDto convert(ChallengePlayer challengePlayer) {
         return new ChallengePlayerDto(challengePlayer.getId(),
-                                      challengePlayer.getValidation(),
+                                      challengePlayer.getNumberOfValidation(),
                                       new ChallengeDto(challengePlayer.getChallengeId(),
                                                        challengePlayer.getLevel(),
-                                                       challengePlayer.getPoint(),
-                                                       challengePlayer.getCategory()));
+                                                       challengePlayer.getPoint()));
     }
 }

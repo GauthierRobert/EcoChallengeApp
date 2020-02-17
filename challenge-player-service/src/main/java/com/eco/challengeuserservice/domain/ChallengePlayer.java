@@ -1,13 +1,16 @@
 package com.eco.challengeuserservice.domain;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import static com.eco.challengeuserservice.domain.ChallengePlayerBuilder.aChallengePlayer;
 
 @Document
-public class ChallengePlayer {
+public class ChallengePlayer implements Serializable {
 
     @Id
     private String id;
@@ -20,28 +23,25 @@ public class ChallengePlayer {
 
     private int point;
 
-    private String category;
-
     private boolean completed;
 
     private Date completionDate;
 
-    private int validation;
+    private List<String> playerValidationIds;
 
-    ChallengePlayer(String id, String playerId, String challengeId, int level, int point, String category, boolean completed, Date completionDate, int validation) {
-        this(playerId, challengeId, level, point, category, completed, completionDate, validation);
+    ChallengePlayer(String id, String playerId, String challengeId, int level, int point, boolean completed, Date completionDate, List<String> playerValidationIds) {
+        this(playerId, challengeId, level, point, completed, completionDate, playerValidationIds);
         this.id = id;
     }
 
-    private ChallengePlayer(String playerId, String challengeId, int level, int point, String category, boolean completed, Date completionDate, int validation) {
+    private ChallengePlayer(String playerId, String challengeId, int level, int point,boolean completed, Date completionDate, List<String> playerValidationIds) {
         this.playerId = playerId;
         this.challengeId = challengeId;
         this.level = level;
         this.point = point;
-        this.category = category;
         this.completed = completed;
         this.completionDate = completionDate;
-        this.validation = validation;
+        this.playerValidationIds = playerValidationIds;
     }
 
     public String getId() {
@@ -60,16 +60,16 @@ public class ChallengePlayer {
         return point;
     }
 
-    public String getCategory() {
-        return category;
+    public List<String> getPlayerValidationIds() {
+        return new ArrayList<>(playerValidationIds);
     }
 
-    public int getValidation() {
-        return validation;
+    public int getNumberOfValidation() {
+        return getPlayerValidationIds().size();
     }
 
-    public ChallengePlayer validate(){
-        return aChallengePlayer().from(this).validate().build();
+    public ChallengePlayer validate(String playerId){
+        return aChallengePlayer().from(this).validate(playerId).build();
     }
 
     String getPlayerId() {
@@ -83,4 +83,5 @@ public class ChallengePlayer {
     Date getCompletionDate() {
         return completionDate;
     }
+
 }

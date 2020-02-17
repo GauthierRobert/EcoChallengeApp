@@ -1,4 +1,4 @@
-package com.eco.challengeservice.service;
+package com.eco.challengeservice.resource;
 
 import com.eco.challengeservice.domain.Challenge;
 import com.eco.challengeservice.dto.ChallengeDto;

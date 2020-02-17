@@ -19,19 +19,26 @@ public class Challenge implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID", nullable = false)
     private String id;
+    @Column(name = "TITLE")
+    private String title;
     @Column(name = "POINT", nullable = false)
     private Integer point;
-    @Column(name = "LEVEL_ID", nullable = false)
+    @Column(name = "LEVEL", nullable = false)
     private Integer level;
-    @Column(name = "CATEGORY_ID")
+    @Column(name = "CATEGORY")
     private Category category;
+    @Column(name = "DESCRIPTION")
+    private String description;
 
     private Challenge() { }
 
-    public Challenge(Integer point, Integer level, Category category) {
+    public Challenge(String id, String title, Integer point, Integer level, Category category, String description) {
+        this.id = id;
+        this.title = title;
         this.point = point;
         this.level = level;
         this.category = category;
+        this.description = description;
     }
 
     @Override
@@ -42,12 +49,13 @@ public class Challenge implements Serializable {
         return Objects.equals(id, challenge.id) &&
                Objects.equals(point, challenge.point) &&
                Objects.equals(level, challenge.level) &&
+               Objects.equals(title, challenge.title) &&
                Objects.equals(category, challenge.category);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, point, level, category);
+        return Objects.hash(id, point, level, category,title);
     }
 
     @Override
