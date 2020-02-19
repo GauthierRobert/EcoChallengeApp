@@ -1,4 +1,4 @@
-package com.eco.authservice.web;
+package com.eco.authservice.kafka;
 
 import com.eco.authservice.dto.UserDto;
 import org.slf4j.Logger;

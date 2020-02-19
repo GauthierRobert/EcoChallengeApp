@@ -1,4 +1,4 @@
-package com.eco.playerservice;
+package com.eco.playerservice.kafka.config;
 
 import com.eco.playerservice.dto.UserDto;
 import java.util.HashMap;

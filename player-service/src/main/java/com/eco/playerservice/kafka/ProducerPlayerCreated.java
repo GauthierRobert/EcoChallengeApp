@@ -1,9 +1,9 @@
-package com.eco.playerservice;
+package com.eco.playerservice.kafka;
 
 import com.eco.playerservice.dto.PlayerDto;
+import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ public class ProducerPlayerCreated {
     @Value("${spring.kafka.topic.playerCreated}")
     private String PLAYER_CREATED_TOPIC;
 
-    @Autowired
+    @Inject
     private KafkaTemplate kafkaTemplate;
 
     public void sendMessage(PlayerDto player) {

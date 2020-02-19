@@ -1,8 +1,9 @@
-package com.eco.authservice.web;
+package com.eco.authservice.resource;
 
 import com.eco.authservice.dto.UserDto;
 import com.eco.authservice.dto.UserRegistrationDto;
 import com.eco.authservice.domain.User;
+import com.eco.authservice.kafka.ProducerUserCreated;
 import com.eco.authservice.service.UserService;
 import java.security.Principal;
 import javax.validation.Valid;

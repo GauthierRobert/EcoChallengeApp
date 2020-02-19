@@ -12,9 +12,6 @@ public class ChallengePlayerBuilder {
     private String id = null;
     private String playerId = null;
     private String challengeId = null;
-    private int level = 0;
-    private int point = 0;
-    private String category = null;
     private boolean completed = false;
     private Date completionDate = null;
     private List<String> playerValidationIds = emptyList();
@@ -31,9 +28,6 @@ public class ChallengePlayerBuilder {
         return withId(challengePlayer.getId())
                 .withPlayerId(challengePlayer.getPlayerId())
                 .withChallengeId(challengePlayer.getChallengeId())
-                .withLevel(challengePlayer.getLevel())
-                .withPoint(challengePlayer.getPoint())
-                .withCategory(challengePlayer.getCategory())
                 .withCompletionDate(challengePlayer.getCompletionDate())
                 .isCompleted(challengePlayer.isCompleted())
                 .withValidation(challengePlayer.getPlayerValidationIds());
@@ -55,27 +49,12 @@ public class ChallengePlayerBuilder {
         return this;
     }
 
-    public ChallengePlayerBuilder withLevel(int level) {
-        this.level = level;
-        return this;
-    }
-
-    public ChallengePlayerBuilder withPoint(int point) {
-        this.point = point;
-        return this;
-    }
-
-    public ChallengePlayerBuilder withCategory(String category) {
-        this.category = category;
-        return this;
-    }
-
-    public ChallengePlayerBuilder isCompleted(boolean isCompleted) {
+    private ChallengePlayerBuilder isCompleted(boolean isCompleted) {
         this.completed = isCompleted;
         return this;
     }
 
-    public ChallengePlayerBuilder withCompletionDate(Date completionDate) {
+    private ChallengePlayerBuilder withCompletionDate(Date completionDate) {
         this.completionDate = completionDate;
         return this;
     }
@@ -100,7 +79,7 @@ public class ChallengePlayerBuilder {
     }
 
     public ChallengePlayer build() {
-        return new ChallengePlayer(id, playerId, challengeId, level, point, category, completed, completionDate, playerValidationIds);
+        return new ChallengePlayer(id, playerId, challengeId, completed, completionDate, playerValidationIds);
     }
 
 }

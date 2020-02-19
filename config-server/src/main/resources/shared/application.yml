@@ -16,3 +16,5 @@ spring:
     bootstrap-servers: PLAINTEXT://kafka:9092
     topic:
       userCreated: USER_CREATED_TOPIC
+      playerCreated: PLAYER_CREATED_TOPIC
+      challengeValidated: CHALLENGE_VALIDATED_TOPIC

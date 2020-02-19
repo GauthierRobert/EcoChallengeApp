@@ -1,4 +1,4 @@
-package com.eco.challengeuserservice;
+package com.eco.challengeuserservice.kafka.config;
 
 import com.eco.challengeuserservice.dto.PlayerDto;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package com.eco.playerservice;
+package com.eco.playerservice.kafka;
 
 import com.eco.playerservice.dto.UserDto;
 import com.eco.playerservice.service.PlayerService;

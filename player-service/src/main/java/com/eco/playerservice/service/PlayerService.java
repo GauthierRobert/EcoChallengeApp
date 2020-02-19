@@ -1,6 +1,6 @@
 package com.eco.playerservice.service;
 
-import com.eco.playerservice.ProducerPlayerCreated;
+import com.eco.playerservice.kafka.ProducerPlayerCreated;
 import com.eco.playerservice.domain.Player;
 import com.eco.playerservice.dto.PlayerDto;
 import com.eco.playerservice.repository.PlayerRepository;
