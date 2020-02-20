@@ -1,4 +1,4 @@
-package com.eco.playerservice.kafka.config;
+package com.eco.challengeservice.kafka.config;
 
 import java.util.HashMap;
 import java.util.Map;

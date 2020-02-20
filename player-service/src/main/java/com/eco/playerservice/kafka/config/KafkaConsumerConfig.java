@@ -1,5 +1,6 @@
 package com.eco.playerservice.kafka.config;
 
+import com.eco.playerservice.dto.ChallengeValidatedDto;
 import com.eco.playerservice.dto.UserDto;
 import java.util.HashMap;
 import java.util.Map;
@@ -41,17 +42,27 @@ public class KafkaConsumerConfig {
     }
 
     @Bean
-    public ConsumerFactory<String, UserDto> consumerFactory() {
-        return new DefaultKafkaConsumerFactory<>(consumerConfigs(), new StringDeserializer(),
-                new JsonDeserializer<>(UserDto.class));
+    public ConsumerFactory<String, UserDto> userConsumerFactory() {
+        return new DefaultKafkaConsumerFactory<>(consumerConfigs(), new StringDeserializer(), new JsonDeserializer<>(UserDto.class));
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, UserDto> kafkaListenerContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<String, UserDto> factory =
-                new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(consumerFactory());
-
+    public ConcurrentKafkaListenerContainerFactory<String, UserDto> userKafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, UserDto> factory = new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(userConsumerFactory());
         return factory;
     }
+
+    @Bean
+    public ConsumerFactory<String, ChallengeValidatedDto> challengeValidatedInfoConsumerFactory() {
+        return new DefaultKafkaConsumerFactory<>(consumerConfigs(), new StringDeserializer(), new JsonDeserializer<>(ChallengeValidatedDto.class));
+    }
+
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, ChallengeValidatedDto> challengeValidatedInfoKafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, ChallengeValidatedDto> factory = new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(challengeValidatedInfoConsumerFactory());
+        return factory;
+    }
+
 }

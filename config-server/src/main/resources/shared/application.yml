@@ -18,3 +18,4 @@ spring:
       userCreated: USER_CREATED_TOPIC
       playerCreated: PLAYER_CREATED_TOPIC
       challengeValidated: CHALLENGE_VALIDATED_TOPIC
+      challengeValidatedInfo: CHALLENGE_VALIDATED_INFO_TOPIC

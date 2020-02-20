@@ -1,5 +1,6 @@
-package com.eco.challengeuserservice.kafka.config;
+package com.eco.challengeservice.kafka.config;
 
+import com.eco.challengeservice.dto.ChallengePlayerDto;
 import java.util.HashMap;
 import java.util.Map;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -40,17 +41,16 @@ public class KafkaConsumerConfig {
     }
 
     @Bean
-    public ConsumerFactory<String, Object> consumerFactory() {
-        return new DefaultKafkaConsumerFactory<>(consumerConfigs(), new StringDeserializer(),
-                new JsonDeserializer<>(Object.class));
+    public ConsumerFactory<String, ChallengePlayerDto> challengPlayerConsumerFactory() {
+        return new DefaultKafkaConsumerFactory<>(consumerConfigs(), new StringDeserializer(), new JsonDeserializer<>(ChallengePlayerDto.class));
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, Object> kafkaListenerContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<String, Object> factory =
-                new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(consumerFactory());
-
+    public ConcurrentKafkaListenerContainerFactory<String, ChallengePlayerDto> challengPlayerKafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, ChallengePlayerDto> factory = new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(challengPlayerConsumerFactory());
         return factory;
     }
+
+
 }

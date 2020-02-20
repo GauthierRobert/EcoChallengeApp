@@ -1,4 +1,4 @@
-package com.eco.userservice;
+package com.eco.userservice.kafka.config;
 
 import com.eco.userservice.dto.UserDto;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -38,17 +38,16 @@ public class KafkaConsumerConfig {
     }
 
     @Bean
-    public ConsumerFactory<String, UserDto> consumerFactory() {
-        return new DefaultKafkaConsumerFactory<>(consumerConfigs(), new StringDeserializer(),
-                new JsonDeserializer<>(UserDto.class));
+    public ConsumerFactory<String, UserDto> userConsumerFactory() {
+        return new DefaultKafkaConsumerFactory<>(consumerConfigs(),
+                                                 new StringDeserializer(),
+                                                 new JsonDeserializer<>(UserDto.class));
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, UserDto> kafkaListenerContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<String, UserDto> factory =
-                new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(consumerFactory());
-
+    public ConcurrentKafkaListenerContainerFactory<String, UserDto> userKafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, UserDto> factory =  new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(userConsumerFactory());
         return factory;
     }
 }

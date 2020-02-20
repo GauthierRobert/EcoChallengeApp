@@ -1,4 +1,4 @@
-package com.eco.userservice.web;
+package com.eco.userservice.kafka;
 
 import com.eco.userservice.dto.UserDto;
 import com.eco.userservice.service.AccountService;
@@ -16,7 +16,9 @@ public class ConsumerUserCreated {
 
     private CountDownLatch latch = new CountDownLatch(1);
 
-    @KafkaListener(topics = "${spring.kafka.topic.userCreated}", groupId = "${spring.kafka.group-id}")
+    @KafkaListener(topics = "${spring.kafka.topic.userCreated}",
+                   groupId = "${spring.kafka.group-id}",
+                   containerFactory = "userKafkaListenerContainerFactory")
     public void receive(UserDto payload) {
         accountService.doSomething(payload);
         latch.countDown();
