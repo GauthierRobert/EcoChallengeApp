@@ -13,7 +13,7 @@ zuul:
     user-service:
       path: /user/** #path that will be intercepted
       serviceId: user-service #which url the request will e mapped to
-      stripPrefix: false #if zuul should replace the "/challenge/" segment
+      stripPrefix: false #if zuul should replace the "/user/" segment
       sensitiveHeaders:
     challenge-service:
       path: /challenge/** #path that will be intercepted
@@ -23,7 +23,7 @@ zuul:
     challenge-player-service:
       path: /challenge-player/** #path that will be intercepted
       serviceId: challenge-player-service #which url the request will e mapped to
-      stripPrefix: false #if zuul should replace the "/challenge/" segment
+      stripPrefix: false #if zuul should replace the "/challenge-player/" segment
       sensitiveHeaders:
 
 server:

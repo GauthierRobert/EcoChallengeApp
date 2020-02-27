@@ -10,6 +10,7 @@
         <module name="challenge-player-service" />
         <module name="challenge-service" />
         <module name="config-server" />
+        <module name="contest-service" />
         <module name="gateway-service" />
         <module name="player-service" />
         <module name="registry-service" />
@@ -21,6 +22,7 @@
       <module name="challenge-player-service" target="1.8" />
       <module name="challenge-service" target="1.8" />
       <module name="config-server" target="1.8" />
+      <module name="contest-service" target="1.8" />
       <module name="gateway-service" target="1.8" />
       <module name="player-service" target="1.8" />
       <module name="registry-service" target="1.8" />
@@ -33,6 +35,7 @@
       <module name="challenge-player-service" options="-parameters" />
       <module name="challenge-service" options="-parameters" />
       <module name="config-server" options="-parameters" />
+      <module name="contest-service" options="-parameters" />
       <module name="gateway-service" options="-parameters" />
       <module name="player-service" options="-parameters" />
       <module name="registry-service" options="-parameters" />
