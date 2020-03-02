@@ -1,13 +1,15 @@
 package com.eco.challengeuserservice.domain;
 
+import com.eco.challengeuserservice.domain.builder.ChallengePlayerBuilder;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import static com.eco.challengeuserservice.domain.ChallengePlayerBuilder.aChallengePlayer;
+import static com.eco.challengeuserservice.domain.builder.ChallengePlayerBuilder.aChallengePlayer;
 
 @Document
 public class ChallengePlayer implements Serializable {
@@ -15,8 +17,10 @@ public class ChallengePlayer implements Serializable {
     @Id
     private String id;
 
+    @Indexed
     private String playerId;
 
+    @Indexed
     private String challengeId;
 
     private boolean completed;
@@ -25,7 +29,7 @@ public class ChallengePlayer implements Serializable {
 
     private List<String> playerValidationIds;
 
-    ChallengePlayer(String id, String playerId, String challengeId, boolean completed, Date completionDate, List<String> playerValidationIds) {
+    public ChallengePlayer(String id, String playerId, String challengeId, boolean completed, Date completionDate, List<String> playerValidationIds) {
         this(playerId, challengeId, completed, completionDate, playerValidationIds);
         this.id = id;
     }
@@ -66,11 +70,11 @@ public class ChallengePlayer implements Serializable {
         return aChallengePlayer().from(this);
     }
 
-    boolean isCompleted() {
+    public boolean isCompleted() {
         return completed;
     }
 
-    Date getCompletionDate() {
+    public Date getCompletionDate() {
         return completionDate;
     }
 

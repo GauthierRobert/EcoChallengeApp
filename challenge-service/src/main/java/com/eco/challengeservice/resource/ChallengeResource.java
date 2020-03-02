@@ -1,6 +1,7 @@
 package com.eco.challengeservice.resource;
 
 import com.eco.challengeservice.dto.ChallengeDto;
+import com.eco.challengeservice.resource.converter.ChallengeConverter;
 import com.eco.challengeservice.service.ChallengeService;
 import java.util.Collection;
 import java.util.stream.Collectors;

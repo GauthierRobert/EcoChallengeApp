@@ -1,5 +1,6 @@
-package com.eco.challengeuserservice.domain;
+package com.eco.challengeuserservice.domain.builder;
 
+import com.eco.challengeuserservice.domain.ChallengePlayer;
 import java.util.Date;
 import java.util.List;
 
