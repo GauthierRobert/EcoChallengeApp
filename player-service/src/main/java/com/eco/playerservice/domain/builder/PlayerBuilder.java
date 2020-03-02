@@ -1,4 +1,6 @@
-package com.eco.playerservice.domain;
+package com.eco.playerservice.domain.builder;
+
+import com.eco.playerservice.domain.Player;
 
 import static java.lang.Math.floorDiv;
 
@@ -11,7 +13,7 @@ public class PlayerBuilder {
     private Integer completedChallenge = 0;
     private Integer level = 1;
 
-    private static final int LEVEL_UP = 15;
+    private static final int LEVEL_UP = 10;
 
     private PlayerBuilder() {
     }
@@ -35,7 +37,7 @@ public class PlayerBuilder {
         return this;
     }
 
-    private PlayerBuilder withUserId(String userId) {
+    public PlayerBuilder withUserId(String userId) {
         this.userId = userId;
         return this;
     }

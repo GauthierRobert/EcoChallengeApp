@@ -1,10 +1,12 @@
 package com.eco.playerservice.domain;
 
+import com.eco.playerservice.domain.builder.PlayerBuilder;
+import java.util.List;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import static com.eco.playerservice.domain.PlayerBuilder.*;
+import static com.eco.playerservice.domain.builder.PlayerBuilder.aPlayer;
 
 @Document
 public class Player {
@@ -16,19 +18,21 @@ public class Player {
     private String userId;
 
     //Can be used
-    private Integer point;
+    private int point;
     //Cannot be used
-    private Integer experience;
+    private int experience;
 
     // challengeCompleted + challengeBlocked + challengeUnBlocked = sum of all challenges
-    private Integer completedChallenge;
+    private int completedChallenge;
 
-    private Integer level;
+    private int level;
+
+    private List<String> contests;
 
     private Player() {
     }
 
-    public Player(String id, String userId, Integer point, Integer experience, Integer completedChallenge, Integer level) {
+    public Player(String id, String userId, int point, int experience, int completedChallenge, int level) {
         this.id = id;
         this.userId = userId;
         this.point = point;

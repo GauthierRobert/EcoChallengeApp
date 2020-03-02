@@ -2,11 +2,12 @@ package com.eco.playerservice.service;
 
 import com.eco.playerservice.domain.Player;
 import com.eco.playerservice.dto.ChallengeValidatedDto;
-import com.eco.playerservice.dto.PlayerDto;
 import com.eco.playerservice.kafka.ProducerPlayerCreated;
 import com.eco.playerservice.repository.PlayerRepository;
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import static com.eco.playerservice.dto.builder.PlayerDtoBuilder.aPlayerDto;
 
 @Named
 public class PlayerService {
@@ -17,8 +18,8 @@ public class PlayerService {
     private ProducerPlayerCreated producerPlayerCreated;
 
     public void save(Player player) {
-        Player save = playerRepository.save(player);
-        producerPlayerCreated.sendMessage(new PlayerDto(save.getId()));
+        Player savedPlayer = playerRepository.save(player);
+        producerPlayerCreated.sendMessage(aPlayerDto().withId(savedPlayer.getId()).build());
     }
 
     public void validate(ChallengeValidatedDto payload) {
