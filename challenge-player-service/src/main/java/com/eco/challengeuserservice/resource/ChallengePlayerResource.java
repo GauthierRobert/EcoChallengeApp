@@ -4,6 +4,7 @@ import com.eco.challengeuserservice.converter.ChallengePlayerConverter;
 import com.eco.challengeuserservice.domain.ChallengePlayer;
 import com.eco.challengeuserservice.dto.ChallengePlayerDto;
 import com.eco.challengeuserservice.service.ChallengePlayerService;
+import io.swagger.annotations.Api;
 import java.util.Collection;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -18,6 +19,7 @@ import static java.util.stream.Collectors.toList;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
 @Path("/challenge-player")
+@Api(value = "challenge-player", description = "Operations about challenges linked to a particular player")
 @Produces(APPLICATION_JSON + "; charset=UTF-8")
 @Consumes(APPLICATION_JSON + "; charset=UTF-8")
 @Named

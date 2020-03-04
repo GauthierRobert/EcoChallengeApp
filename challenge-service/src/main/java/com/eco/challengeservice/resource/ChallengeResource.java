@@ -3,6 +3,7 @@ package com.eco.challengeservice.resource;
 import com.eco.challengeservice.dto.ChallengeDto;
 import com.eco.challengeservice.resource.converter.ChallengeConverter;
 import com.eco.challengeservice.service.ChallengeService;
+import io.swagger.annotations.Api;
 import java.util.Collection;
 import java.util.stream.Collectors;
 import javax.inject.Inject;
@@ -18,6 +19,7 @@ import org.slf4j.LoggerFactory;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
 @Path("/challenge")
+@Api(value = "/challenge", description = "Operations about challenges")
 @Produces(APPLICATION_JSON + "; charset=UTF-8")
 @Consumes(APPLICATION_JSON + "; charset=UTF-8")
 @Named

@@ -1,4 +1,4 @@
-package com.eco.challengeservice.domain;
+package com.eco.challengeservice.domain.sub;
 
 import java.io.Serializable;
 

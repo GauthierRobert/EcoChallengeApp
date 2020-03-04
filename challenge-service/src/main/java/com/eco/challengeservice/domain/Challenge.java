@@ -1,5 +1,6 @@
 package com.eco.challengeservice.domain;
 
+import com.eco.challengeservice.domain.sub.Category;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
@@ -13,7 +14,7 @@ import lombok.Getter;
 @Getter
 @Entity(name = "Challenges")
 @Table(name = "Challenges")
-public class Challenge implements Serializable {
+public abstract class Challenge implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
