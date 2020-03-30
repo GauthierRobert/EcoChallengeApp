@@ -5,3 +5,5 @@ mvn clean install -f C:/Apps/MyEcoApp/auth-service/pom.xml
 mvn clean install -f C:/Apps/MyEcoApp/user-service/pom.xml
 mvn clean install -f C:/Apps/MyEcoApp/challenge-service/pom.xml
 mvn clean install -f C:/Apps/MyEcoApp/challenge-user-service/pom.xml
+mvn clean install -f C:/Apps/MyEcoApp/contest-service/pom.xml
+mvn clean install -f C:/Apps/MyEcoApp/player-service/pom.xml
